@@ -1,11 +1,30 @@
 {
-  "name": "puppeeteer-katex",
+  "name": "puppeteer-rough",
   "version": "1.0.0",
+  "description": "Tool to build out quick diagrams with text",
   "main": "index.js",
+  "bin": {
+    "rough": "index.js"
+  },
   "license": "MIT",
   "dependencies": {
     "puppeteer": "^4.0.1",
     "roughjs": "^4.3.1",
     "yargs-parser": "^18.1.3"
+  },
+  "scripts": {
+    "deploy": "sudo npm uninstall -g . && sudo npm i -g . && rough --help"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/okeeffed/puppeteer-roughjs.git"
+  },
+  "author": "Dennis O'Keeffe",
+  "bugs": {
+    "url": "https://github.com/okeeffed/puppeteer-roughjs/issues"
+  },
+  "homepage": "https://github.com/okeeffed/puppeteer-roughjs#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }

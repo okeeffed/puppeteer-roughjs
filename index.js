@@ -16,6 +16,7 @@ Examples
 
 > node index.js "Testing this this{} | Another one | Third one {fill: 'red'}"
 > node index.js "Testing this this{fill: 'blue', fillWeight: 3, hachureGap: 8} | Another one | Third one{fill: 'red'} | Final square {fillStyle: 'solid'}"
+> node index.js "This is a very long sentence that will resize the box | This box will keep that width {fill: 'yellow', hachureGap: 3} "
 
 Roughjs Options
 ---
@@ -24,6 +25,7 @@ hachureGap: 8 // gap between hachure lines
 fillStyle: 'solid' // solid fill
 fillWeight: 3 // thicker lines for hachure
 `;
+
 if (argv.help) {
   console.log(help);
 }
@@ -131,7 +133,7 @@ const script = `
 const addTextToRectangle = (text, x, y, width, height) => {
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
-  ctx.font = '16px Sans Serif';
+  ctx.font = '16px Open Sans';
   ctx.fillStyle = 'black';
   ctx.textAlign = 'center';
   ctx.fillText(text, x + width / 2, y + height / 2);
@@ -140,7 +142,7 @@ const addTextToRectangle = (text, x, y, width, height) => {
 const addTextToCircle = (text, centerX, centerY) => {
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
-  ctx.font = '16px Sans Serif';
+  ctx.font = '16px Open Sans';
   ctx.fillStyle = 'black';
   ctx.textAlign = 'center';
   ctx.fillText(text, centerX, centerY);
@@ -182,6 +184,9 @@ const html = `<!DOCTYPE html>
   <head>
     <!-- The loading of RoughJS is deferred to speed up page rendering -->
     <script src="https://cdn.jsdelivr.net/npm/roughjs@4.3.1/bundled/rough.js" integrity="sha256-/9PZn0Dy4EaX+C+sZSpiFxTimvbrTSoeCj6XwK2vIFg=" crossorigin="anonymous"></script>
+    <style>
+      @font-face { font-family: 'Open Sans'; src: url('OpenSans-Regular.ttf'); } 
+    </style>
   </head>
   <canvas id="canvas" width="${CALCULATED_WIDTH}px" height="${CALCULATED_HEIGHT}px" style="display: inline-block;"></canvas>
   <script>
