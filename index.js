@@ -9,6 +9,7 @@ const puppeteer = require('puppeteer');
 const argv = require('yargs-parser')(process.argv.slice(2));
 const path = require('path');
 
+/** Help text to display when asked or incorrect option given */
 const help = `
 rough - Quick RoughJS diagram generator
 
@@ -98,6 +99,12 @@ const addLine = (x1, y1, x2, y2) => `rc.line(${x1}, ${y1}, ${x2}, ${y2});`;
 // const addTextToCircle = (text, centerX, centerY) =>
 //   `addTextToCircle(${text}, ${centerX}, ${centerY})`;
 
+/**
+ * Helper to generate the string we will interpolate
+ * to create the RoughJS objects
+ *
+ * @returns {string} JavaScript string
+ */
 const generateString = () => {
   let len = 0;
 
@@ -145,6 +152,10 @@ const generateString = () => {
   return js;
 };
 
+/**
+ * Helper screen to interpolate into the HTML text that we
+ * will run with Puppeteer.
+ */
 const script = `
 const addTextToRectangle = (text, x, y, width, height) => {
   var canvas = document.getElementById('canvas');
@@ -246,8 +257,9 @@ const main = async () => {
     const element = await page.$('#canvas');
 
     // Create a screenshot and save it locally to "math.png"
+    const output = argv.out ? argv.out : 'rough.png';
     await element.screenshot({
-      path: path.resolve(process.cwd(), 'rough.png'),
+      path: path.resolve(process.cwd(), output),
     });
   } catch (err) {
     console.error(err);
