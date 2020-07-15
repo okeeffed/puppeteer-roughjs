@@ -7,6 +7,7 @@
  */
 const puppeteer = require('puppeteer');
 const argv = require('yargs-parser')(process.argv.slice(2));
+const path = require('path');
 
 const help = `
 rough - Quick RoughJS diagram generator
@@ -20,6 +21,7 @@ Examples
 
 Roughjs Options
 ---
+
 hachureAngle: 60 // angle of hachure
 hachureGap: 8 // gap between hachure lines
 fillStyle: 'solid' // solid fill
@@ -215,7 +217,9 @@ const main = async () => {
     const element = await page.$('#canvas');
 
     // Create a screenshot and save it locally to "math.png"
-    await element.screenshot({ path: 'rough.png' });
+    await element.screenshot({
+      path: path.resolve(process.cwd(), 'rough.png'),
+    });
   } catch (err) {
     console.error(err);
   } finally {
