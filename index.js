@@ -46,7 +46,7 @@ if (argv.help || !argv._.length) {
 
 /** Constants */
 // Allocated size per character
-const PER_CHAR = 8;
+const PER_CHAR = 12;
 const HEIGHT = 80;
 // Displacement between each box
 const DISPLACEMENT = 24;
